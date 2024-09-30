@@ -1,9 +1,61 @@
+import cosas.*
+import escenariosTest.*
 import camion.*
 
 describe "group of test for camion" {
 
-  test "first test" {
-    assert.that(true)
+  test "el peso total de camion seria 2410kg" {
+    escenario1.preparar()
+    assert.equals(2410, camion.peso())
   }
 
+  test "el peso total del cargamento seria 1410kg" {
+    escenario1.preparar()
+    assert.equals(1410, camion.pesoDelCargamento())
+  }
+
+  test "no hay elementos con pesos impares" {
+    escenario1.preparar()
+    assert.notThat(camion.todosLosPesosSonImpares())
+  }
+
+  test "hay algo que pesa 300 ya que esta la bateria antiaerea con misiles" {
+    escenario1.preparar()
+    assert.that(camion.hayAlgoQuePesa(300))
+  }
+
+  test "el primer elemento con peligrosidad 1 es la arena" {
+    escenario1.preparar()
+    assert.equals(arenaAGranel,camion.primerElementoConPeligrosidad(1))
+  }
+
+  test "los elementos con mayor peligrosidad a 10 son bumblebee y la bateria antiaerea" {
+    escenario1.preparar()
+    assert.equals([bumblebee,bateriaAntiaerea],camion.todosLosElementosConMayorNivelDePeligrosidad(10))
+  }
+
+  test "no hay elementos con mayor nivel de peligrosidad que la bateria antiaerea"{
+    escenario1.preparar()
+    assert.that(camion.todosLosElementosConMayorNivelDePeligrosidadQue(bateriaAntiaerea).isEmpty())
+  }
+
+  test "el camion no esta excedido en peso" {
+    escenario1.preparar()
+    assert.notThat(camion.estaExcedidoEnPeso())
+  }
+
+  test "el camion no puede cirular en una ruta con peligrosidad 60" {
+    escenario1.preparar()
+    assert.notThat(camion.puedeCircularEnRuta(60))
+  }
+
+  test "el camion tiene algo que pesa entre 500 y 1000 kilos" {
+    escenario1.preparar()
+    assert.that(camion.tieneAlgoQuePeseEntre(500,1000))
+  }
+
+  test "el elemento con mayor peso es bumblebee" {
+    escenario1.preparar()
+    assert.equals(bumblebee, camion.elementoConMayorPeso())
+  }
 }
