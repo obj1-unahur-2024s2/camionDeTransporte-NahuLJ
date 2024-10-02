@@ -1,0 +1,34 @@
+import camion2.*
+import cosas2.*
+describe "group of test for PARTE 2" {
+    test "si se agrega a bumblebee y a knight rider al camion, bumblebee se transforma y knight rider sigue igual" {
+        camion.cargar(bumblebee)
+        camion.cargar(knightRider)
+        assert.equals(10, knightRider.peligrosidad())
+        assert.that(bumblebee.estaTransformado())
+        assert.equals(15, bumblebee.peligrosidad())
+    
+    }
+
+    test "los bultos de los ladrillos son 2 si cuenta con 168 ladrillos" {
+        paqueteLadrillos.cantidadLadrillos(168)
+        assert.equals(2, paqueteLadrillos.bultos())
+    }
+
+    test "los bultos de los ladrillos son 3 si cuenta con 450 ladrillos" {
+        paqueteLadrillos.cantidadLadrillos(450)
+        assert.equals(3, paqueteLadrillos.bultos())
+    }
+
+    test "los bultos de los misiles son 2 si esta con misiles" {
+        bateriaAntiaerea.estaConMisiles(true)
+        assert.equals(2, bateriaAntiaerea.bultos())
+    }
+
+    test "si el contenedor contiene a bumblebee y arena de granel contiene 4 bultos" {
+        contenedorPortuario.agregar(bumblebee)
+        contenedorPortuario.agregar(arenaAGranel)
+        assert.equals(4, contenedorPortuario.bultos())
+    }
+
+}
